@@ -18,7 +18,7 @@ export const NearbyShelters = () => {
   if (isLoading) return <LoadingNearbyShelter />
 
   return (
-    <section className="flex h-dvh flex-col bg-background px-6 py-8 align-center">
+    <section className="flex h-full flex-col px-6 py-8 align-center lg:mx-auto lg:w-2/3">
       <div className="mb-6">
         <p className="flex items-center gap-2">
           <MdOutlinePersonPinCircle aria-label="false" /> {location.suburb},{' '}

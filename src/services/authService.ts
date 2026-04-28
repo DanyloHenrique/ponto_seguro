@@ -10,12 +10,14 @@ export const authService = {
       localStorage.setItem('@AjudaAe:token', response.data.token)
     }
 
-    return response.data
+    return response.data.token
   },
 
   // POST /users
   register: async (userData: createUser) => {
     const response = await api.post('/users', userData)
+    console.log('🚀 ~ response:', response.data)
+    alert(response.data)
     return response.data
   },
 }
