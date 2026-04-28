@@ -1,10 +1,10 @@
-import { Outlet } from "react-router"
-import {Header} from "@/components/header/Header"
+import { Outlet } from 'react-router'
+import { Header } from '@/components/header/Header'
 
 export function MainLayout() {
   return (
     <>
-        <Header />
+      <Header />
       <main>
         <Outlet />
       </main>

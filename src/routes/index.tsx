@@ -1,10 +1,18 @@
-import { createBrowserRouter } from "react-router"
+import { createBrowserRouter } from 'react-router'
 
-import { MainLayout } from "@/layout/MainLayout"
+import { MainLayout } from '@/layout/MainLayout'
 
-import { NearbyShelters } from "@/pages/nearbyShelters/NearbyShelters"
+import { NearbyShelters } from '@/pages/nearbyShelters/NearbyShelters'
 
 export const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <div>Ola, mundo</div>,
+    handle: {
+      title: 'Home',
+    },
+  },
+
   // {
   //   path: "/login",
   //   element: <Login />,
@@ -16,10 +24,10 @@ export const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       {
-        path: "/nearby-shelters",
+        path: '/nearby-shelters',
         element: <NearbyShelters />,
         handle: {
-          title: "Abrigos Próximos",
+          title: 'Abrigos Próximos',
         },
       },
     ],
