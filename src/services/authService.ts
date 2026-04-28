@@ -1,3 +1,4 @@
+import type { createUser } from '@/types/user'
 import api from './api.services'
 
 export const authService = {
@@ -13,7 +14,7 @@ export const authService = {
   },
 
   // POST /users
-  register: async (userData) => {
+  register: async (userData: createUser) => {
     const response = await api.post('/users', userData)
     return response.data
   },
