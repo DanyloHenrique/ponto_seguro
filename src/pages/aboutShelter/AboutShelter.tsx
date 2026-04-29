@@ -63,36 +63,38 @@ export const Shelter = () => {
         <p>{shelter.address}</p>
       </section>
 
-      <div className="lg:3/5 mx-auto flex w-9/10 flex-col gap-4 pb-8">
-        <section className="flex flex-col gap-4 rounded-2xl bg-white px-3 py-4 text-left align-center">
-          <div className="flex items-center justify-between">
-            <div className="flex items-baseline gap-2">
-              <p className="text-2xl text-bold">
-                {shelter.capacity_current}/{shelter.capacity_max}
-              </p>{' '}
-              Pessoas no abrigo
+      <div className="lg:3/5 mx-auto flex w-9/10 flex-col gap-4 pb-8 lg:flex-row">
+        <div className="flex flex-col gap-4 lg:h-4/5 lg:w-3/5 lg:gap-8">
+          <section className="flex flex-col gap-4 rounded-2xl bg-white px-3 py-4 text-left align-center">
+            <div className="flex items-center justify-between">
+              <div className="flex items-baseline gap-2">
+                <p className="text-2xl text-bold">
+                  {shelter.capacity_current}/{shelter.capacity_max}
+                </p>{' '}
+                Pessoas no abrigo
+              </div>
+              {isCrowded ? (
+                <span className="rounded-full border border-red-200 bg-red-100 px-3 py-1 font-medium text-red-700 text-sm">
+                  Lotado
+                </span>
+              ) : (
+                <span className="rounded-full border border-safe-200 bg-safe-100 px-3 py-1 font-medium text-safe-700 text-sm">
+                  Disponível
+                </span>
+              )}
             </div>
-            {isCrowded ? (
-              <span className="rounded-full border border-red-200 bg-red-100 px-3 py-1 font-medium text-red-700 text-sm">
-                Lotado
-              </span>
-            ) : (
-              <span className="rounded-full border border-safe-200 bg-safe-100 px-3 py-1 font-medium text-safe-700 text-sm">
-                Disponível
-              </span>
-            )}
-          </div>
-          <BarProgress percentage={percentage} />
-          <p>{percentage.toFixed(0)}% da capacidade máxima</p>
-        </section>
+            <BarProgress percentage={percentage} />
+            <p>{percentage.toFixed(0)}% da capacidade máxima</p>
+          </section>
 
-        <CheckInForm
-          checkInInput={checkInInput}
-          setCheckInInput={setCheckInInput}
-          handleSubmit={handleRegister}
-          isLoading={isLoading}
-          errorsZod={errorsZod}
-        />
+          <CheckInForm
+            checkInInput={checkInInput}
+            setCheckInInput={setCheckInInput}
+            handleSubmit={handleRegister}
+            isLoading={isLoading}
+            errorsZod={errorsZod}
+          />
+        </div>
 
         <RegisteredPersons checkIns={shelter.checkIns} />
       </div>

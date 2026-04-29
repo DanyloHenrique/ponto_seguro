@@ -8,14 +8,14 @@ export default function RegisteredPersons({
   checkIns,
 }: RegisteredPersonsProps) {
   return (
-    <section className="flex w-full flex-col gap-4 rounded-2xl bg-white px-3 py-4 text-left align-center">
+    <section className="mb-8 flex w-full flex-col gap-4 rounded-2xl bg-white px-3 py-4 text-left align-center lg:mb-0 lg:h-full lg:w-2/5">
       <div className="px-2 pt-2">
         <h3 className="font-semibold text-sm tracking-widest">
           Pessoas Registradas
         </h3>
       </div>
 
-      <div className="flex max-h-52 flex-col overflow-y-auto px-2 pr-4">
+      <div className="flex h-52 max-h-52 flex-col overflow-y-auto px-2 pr-4">
         {checkIns.length > 0 ? (
           checkIns.map((person) => (
             <div
