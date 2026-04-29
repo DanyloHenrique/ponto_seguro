@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { shelterService } from '@/services/shelterService'
-import type { shelter } from '@/types/shelter'
+import type { nearbyShelter } from '@/types/shelter'
 
 type useFetchNearbySheltersProps = {
   latitude: number | null
@@ -11,7 +11,7 @@ export const useFetchNearbyShelters = ({
   longitude,
   latitude,
 }: useFetchNearbySheltersProps) => {
-  const [shelters, setShelters] = useState<shelter[]>([])
+  const [shelters, setShelters] = useState<nearbyShelter[]>([])
 
   useEffect(() => {
     if (!latitude || !longitude) return

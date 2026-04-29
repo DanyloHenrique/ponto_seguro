@@ -1,12 +1,12 @@
 import { createBrowserRouter } from 'react-router'
 
 import { MainLayout } from '@/layout/MainLayout'
+import { Shelter } from '@/pages/aboutShelter/AboutShelter'
 import { Login } from '@/pages/auth/login/Login'
 import { SignUp } from '@/pages/auth/signUp/SignUp'
 import { NearbyShelters } from '@/pages/nearbyShelters/NearbyShelters'
 import { RegisterMissingPerson } from '@/pages/registerMissingPerson/RegisterMissingPerson'
 import { RegisterShelter } from '@/pages/registerShelter/RegisterShelter'
-
 import { ProtectRoutes } from './ProtectRoutes'
 
 export const router = createBrowserRouter([
@@ -62,9 +62,15 @@ export const router = createBrowserRouter([
           {
             path: '/abrigos-proximos',
             element: <NearbyShelters />,
-
             handle: {
               title: 'Abrigos Próximos',
+            },
+          },
+          {
+            path: '/abrigo/:id',
+            element: <Shelter />,
+            handle: {
+              title: 'Painel do Abrigo',
             },
           },
         ],

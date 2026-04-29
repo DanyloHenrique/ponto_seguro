@@ -111,7 +111,7 @@ export const RegisterShelter = () => {
               <Button.Icon>
                 <MdOutlineNightShelter />
               </Button.Icon>
-              <Button.Label>Registrar desaparecimento</Button.Label>
+              <Button.Label>Criar abrigo</Button.Label>
             </>
           )}
         </Button.Root>

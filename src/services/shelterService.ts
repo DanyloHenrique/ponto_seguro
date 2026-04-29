@@ -1,8 +1,19 @@
-import type { createShelter, shelter } from '@/types/shelter'
+import type { createShelter, nearbyShelter } from '@/types/shelter'
 import { getDistanceBetweenCoordinates } from '@/utils/get-distance-between-coordinates'
 import api from './api.services'
 
 export const shelterService = {
+  // get /shelters/:id
+  fetchById: async (id: string) => {
+    try {
+      const response = await api.get(`/shelters/${id}`)
+      if (response.data.payload.shelter) return response.data.payload.shelter
+    } catch (error) {
+      console.error('Erro ao buscar abrigo', error)
+      throw error
+    }
+  },
+
   // GET /shelters/nearby
   fetchNearby: async (latitude: number, longitude: number) => {
     try {
@@ -10,7 +21,7 @@ export const shelterService = {
         params: { latitude, longitude },
       })
 
-      return response.data.shelters.map((shelter: shelter) => ({
+      return response.data.shelters.map((shelter: nearbyShelter) => ({
         ...shelter,
         distance_in_km: getDistanceBetweenCoordinates(
           { latitude, longitude },
