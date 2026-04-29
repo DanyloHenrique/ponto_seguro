@@ -27,7 +27,19 @@ export const shelterService = {
 
   // POST /shelters
   register: async (shelterData: createShelter) => {
-    const response = await api.post('/shelters', shelterData)
+    const response = await api.post('/shelters', {
+      name: shelterData.name,
+      address: shelterData.address,
+      latitude: shelterData.latitude,
+      longitude: shelterData.longitude,
+      capacity_max: shelterData.capacity_max,
+      capacity_current: 0,
+    })
+
+    console.log('🚀 ~ response:', response.data)
+    if (!(response.status === 201)) {
+      return alert('Erro ao registrar pessoa')
+    }
     return response.data
   },
 }
