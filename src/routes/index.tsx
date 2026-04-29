@@ -5,7 +5,9 @@ import { Login } from '@/pages/auth/login/Login'
 import { SignUp } from '@/pages/auth/signUp/SignUp'
 import { NearbyShelters } from '@/pages/nearbyShelters/NearbyShelters'
 import { RegisterMissingPerson } from '@/pages/registerMissingPerson/RegisterMissingPerson'
-import { ProtectRoutes } from '@/routes/ProtectRoutes'
+import { RegisterShelter } from '@/pages/registerShelter/RegisterShelter'
+
+import { ProtectRoutes } from './ProtectRoutes'
 
 export const router = createBrowserRouter([
   {
@@ -37,9 +39,15 @@ export const router = createBrowserRouter([
       {
         path: '/pessoa-desaparecida',
         element: <RegisterMissingPerson />,
-
         handle: {
           title: 'Registrar Pessoa Desaparecida',
+        },
+      },
+      {
+        path: '/cadastrar-abrigo',
+        element: <RegisterShelter />,
+        handle: {
+          title: 'Cadastrar Abrigo',
         },
       },
     ],

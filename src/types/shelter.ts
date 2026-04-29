@@ -4,7 +4,14 @@ export type createShelter = {
   latitude: number
   longitude: number
   capacity_max: number
-  capacity_current: number
+}
+
+export type inputShelter = {
+  name: string
+  address: string
+  latitude: string
+  longitude: string
+  capacity_max: string
 }
 
 export type shelter = {
