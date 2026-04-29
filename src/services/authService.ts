@@ -7,7 +7,7 @@ export const authService = {
     const response = await api.post('/sessions', { email, password })
 
     if (response.data.token) {
-      localStorage.setItem('@AjudaAe:token', response.data.token)
+      localStorage.setItem('@pontoSeguro:token', response.data.token)
     }
 
     return response.data.token

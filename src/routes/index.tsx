@@ -4,6 +4,7 @@ import { MainLayout } from '@/layout/MainLayout'
 import { Login } from '@/pages/auth/login/Login'
 import { SignUp } from '@/pages/auth/signUp/SignUp'
 import { NearbyShelters } from '@/pages/nearbyShelters/NearbyShelters'
+import { ProtectRoutes } from '@/routes/ProtectRoutes'
 
 export const router = createBrowserRouter([
   {
@@ -30,14 +31,20 @@ export const router = createBrowserRouter([
   },
 
   {
-    element: <MainLayout />,
+    element: <ProtectRoutes />,
     children: [
       {
-        path: '/abrigos-proximos',
-        element: <NearbyShelters />,
-        handle: {
-          title: 'Abrigos Próximos',
-        },
+        element: <MainLayout />,
+        children: [
+          {
+            path: '/abrigos-proximos',
+            element: <NearbyShelters />,
+
+            handle: {
+              title: 'Abrigos Próximos',
+            },
+          },
+        ],
       },
     ],
   },
