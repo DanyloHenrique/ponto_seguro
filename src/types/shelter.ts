@@ -37,3 +37,14 @@ export type shelter = {
   capacity_current: number
   checkIns: checkIn[]
 }
+
+export type shelterUser = {
+  id: string
+  name: string
+  address: string
+  latitude: number
+  longitude: number
+  capacity_max: number
+  capacity_current: number,
+  userId: string
+}

@@ -20,4 +20,13 @@ export const missingPersonService = {
     }
     return result.data
   },
+
+  //id in the token
+  async fetchByUserId() {
+    const result = await api.get(`/missing-peoples/me`)
+    if (!(result.status === 200)) {
+      return alert('Erro ao buscar pessoas perdidas')
+    }
+    return result.data.payload
+  },
 }
