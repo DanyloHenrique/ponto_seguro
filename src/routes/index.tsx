@@ -59,7 +59,7 @@ export const router = createBrowserRouter([
             path: '/home',
             element: <Home />,
             handle: {
-              title: 'Home',
+              title: 'Ponto Seguro',
             },
           },
           {

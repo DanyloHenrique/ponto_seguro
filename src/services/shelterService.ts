@@ -36,6 +36,16 @@ export const shelterService = {
     }
   },
 
+  fetchByUserId: async()=>{
+    try {
+      const response = await api.get(`/shelters/me`)
+      if (response.data.payload.shelter) return response.data.payload.shelter
+    } catch (error) {
+      console.error('Erro ao buscar abrigo', error)
+      throw error
+    }
+  },
+
   // POST /shelters
   register: async (shelterData: createShelter) => {
     const response = await api.post('/shelters', {
