@@ -3,7 +3,7 @@
 Interface web da plataforma Ponto Seguro, desenvolvida para centralizar informações e facilitar a gestão em situações de emergência climática e desastres naturais.
 
 🌐 **Deploy:** [ponto-seguro-zeta.vercel.app](https://ponto-seguro-zeta.vercel.app/)
-🔗 **Backend:** [github.com/DanyloHenrique/ponto_seguro_api](https://github.com/DanyloHenrique/ponto_seguro)
+🔗 **Backend:** [github.com/DanyloHenrique/ponto_seguro_api](https://github.com/DanyloHenrique/ponto_seguro_api)
 
 ## Apresentação da Ideia
 
