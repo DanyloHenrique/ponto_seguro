@@ -18,7 +18,7 @@ export const UserShelter = ({
 
   return (
     <Link
-      to={`abrigo/${shelterId}`}
+      to={`/abrigo/${shelterId}`}
       className="flex w-full cursor-pointer flex-col gap-4 rounded-2xl border-safe border-l-[6px] bg-white p-6 text-left shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] transition-shadow hover:shadow-md"
     >
       <div className="flex flex-col">
