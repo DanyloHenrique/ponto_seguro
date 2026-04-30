@@ -1,12 +1,15 @@
 import { createBrowserRouter } from 'react-router'
 
 import { MainLayout } from '@/layout/MainLayout'
+
 import { Shelter } from '@/pages/aboutShelter/AboutShelter'
 import { Login } from '@/pages/auth/login/Login'
 import { SignUp } from '@/pages/auth/signUp/SignUp'
+import { Home } from '@/pages/home/Home'
 import { NearbyShelters } from '@/pages/nearbyShelters/NearbyShelters'
 import { RegisterMissingPerson } from '@/pages/registerMissingPerson/RegisterMissingPerson'
 import { RegisterShelter } from '@/pages/registerShelter/RegisterShelter'
+
 import { ProtectRoutes } from './ProtectRoutes'
 
 export const router = createBrowserRouter([
@@ -37,17 +40,10 @@ export const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       {
-        path: '/pessoa-desaparecida',
-        element: <RegisterMissingPerson />,
+        path: '/abrigos-proximos',
+        element: <NearbyShelters />,
         handle: {
-          title: 'Registrar Pessoa Desaparecida',
-        },
-      },
-      {
-        path: '/cadastrar-abrigo',
-        element: <RegisterShelter />,
-        handle: {
-          title: 'Cadastrar Abrigo',
+          title: 'Abrigos Próximos',
         },
       },
     ],
@@ -60,10 +56,24 @@ export const router = createBrowserRouter([
         element: <MainLayout />,
         children: [
           {
-            path: '/abrigos-proximos',
-            element: <NearbyShelters />,
+            path: '/home',
+            element: <Home />,
             handle: {
-              title: 'Abrigos Próximos',
+              title: 'Home',
+            },
+          },
+          {
+            path: '/pessoa-desaparecida',
+            element: <RegisterMissingPerson />,
+            handle: {
+              title: 'Registrar Pessoa Desaparecida',
+            },
+          },
+          {
+            path: '/cadastrar-abrigo',
+            element: <RegisterShelter />,
+            handle: {
+              title: 'Cadastrar Abrigo',
             },
           },
           {
