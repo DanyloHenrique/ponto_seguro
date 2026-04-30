@@ -6,13 +6,13 @@ import { NavBar } from '@/pages/landingPage/components/NavBar'
 export const LandingPage = () => {
   return (
     <div className="min-h-screen scroll-smooth font-sans text-surface-900 selection:bg-safe-200">
-      <div className="bg-safe-200 px-6 py-6 lg:px-12">
+      <div className="bg-safe-200 px-6 pt-6 lg:px-12 lg:py-6">
         <NavBar />
         <HeroSection />
         <Features />
       </div>
 
-      <section className="bg-safe-50 px-6 py-24 text-center lg:px-12">
+      <section className="bg-safe-50 px-6 py-6 text-center lg:px-12 lg:py-24">
         <div className="mx-auto flex max-w-2xl flex-col items-center">
           <h2 className="mb-4 font-black text-3xl text-surface-900 md:text-4xl">
             Pronto para ajudar ou ser ajudado?

@@ -6,7 +6,7 @@ export const Features = () => {
   return (
     <section
       id="como-funciona"
-      className="mx-auto mt-32 max-w-7xl pb-24 text-left"
+      className="mx-auto mt-12 max-w-7xl pb-6 text-left lg:pb-24"
     >
       <h3 className="mb-2 font-semibold text-surface-500 text-xs uppercase tracking-widest">
         Como Funciona

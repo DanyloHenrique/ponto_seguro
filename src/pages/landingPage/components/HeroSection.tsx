@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 
 export const HeroSection = () => {
   return (
-    <header className="mx-auto mt-20 flex max-w-4xl flex-col items-center text-center md:mt-32">
+    <header className="mx-auto mt-8 flex max-w-4xl flex-col items-center text-center md:mt-16">
       <span className="mb-6 rounded-full bg-safe-400 px-4 py-1 font-bold text-surface-900 text-xs uppercase tracking-widest">
         Plataforma de Emergência Climática
       </span>
