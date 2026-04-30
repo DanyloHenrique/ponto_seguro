@@ -52,7 +52,7 @@ export const RegisterShelter = () => {
     setErrors({})
     setIsLoading(true)
     try {
-      const result = await shelterService.register(dataValidated)
+     await shelterService.register(dataValidated)
       alert('Abrigo criado com sucesso!')
       navigate('/home')
     } catch (error) {

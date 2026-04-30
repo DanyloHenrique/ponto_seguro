@@ -6,18 +6,18 @@ import { Shelter } from '@/pages/aboutShelter/AboutShelter'
 import { Login } from '@/pages/auth/login/Login'
 import { SignUp } from '@/pages/auth/signUp/SignUp'
 import { Home } from '@/pages/home/Home'
+import { LandingPage } from '@/pages/landingPage/LandingPage'
 import { NearbyShelters } from '@/pages/nearbyShelters/NearbyShelters'
 import { RegisterMissingPerson } from '@/pages/registerMissingPerson/RegisterMissingPerson'
 import { RegisterShelter } from '@/pages/registerShelter/RegisterShelter'
-
 import { ProtectRoutes } from './ProtectRoutes'
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <div>Ola, mundo</div>,
+    element: <LandingPage />,
     handle: {
-      title: 'Home',
+      title: 'Landing Page',
     },
   },
   {

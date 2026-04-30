@@ -60,7 +60,7 @@ export const RegisterMissingPerson = () => {
     setErrors({})
     setIsLoading(true)
     try {
-      const result = await missingPersonService.register(dataValidated)
+      await missingPersonService.register(dataValidated)
       alert('Pessoa desaparecida cadastrada com sucesso!')
       navigate('/home')
     } catch (error) {
