@@ -48,7 +48,7 @@ export const Login = () => {
         dataLoginUser.email,
         dataLoginUser.password,
       )
-      if (token) navigate('/')
+      if (token) navigate('/home')
     } catch (error) {
       console.error(error)
       alert('Erro ao entrar na conta')

@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { MdOutlinePersonSearch } from 'react-icons/md'
+import { useNavigate } from 'react-router'
 import z from 'zod'
+
 import { Button } from '@/components/primaryButton/PrimaryButton'
 import { AboutPersonSection } from '@/pages/registerMissingPerson/components/AboutPersonSection'
 import { ContactSection } from '@/pages/registerMissingPerson/components/ContactSection'
@@ -21,6 +23,7 @@ const registerMissingPersonSchema = z.object({
 })
 
 export const RegisterMissingPerson = () => {
+  const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [missingPerson, setMissingPerson] = useState<inputMissingPerson>({
@@ -58,8 +61,8 @@ export const RegisterMissingPerson = () => {
     setIsLoading(true)
     try {
       const result = await missingPersonService.register(dataValidated)
-      console.log('🚀 ~ handleRegister ~ result:', result)
-      console.log('')
+      alert('Pessoa desaparecida cadastrada com sucesso!')
+      navigate('/home')
     } catch (error) {
       console.error(error)
       alert('Erro ao registrar pessoa')

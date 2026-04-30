@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { MdOutlineNightShelter } from 'react-icons/md'
+import { useNavigate } from 'react-router'
 import z from 'zod'
 
 import bannerShelterRegister from '@/assets/shelter-register.png'
@@ -18,6 +19,7 @@ const registerShelterSchema = z.object({
 })
 
 export const RegisterShelter = () => {
+  const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [shelter, setShelter] = useState<inputShelter>({
@@ -51,8 +53,8 @@ export const RegisterShelter = () => {
     setIsLoading(true)
     try {
       const result = await shelterService.register(dataValidated)
-      console.log('🚀 ~ handleRegister ~ result:', result)
       alert('Abrigo criado com sucesso!')
+      navigate('/home')
     } catch (error) {
       console.error(error)
       alert('Erro ao registrar abrigo')
