@@ -58,13 +58,13 @@ export const Shelter = () => {
 
   return (
     <>
-      <section className="mx-4 my-6 lg:mx-12">
+      <section className="mx-4 my-6 lg:mx-12 lg:my-4 lg:flex lg:items-baseline lg:gap-6">
         <h2 className="font-bold text-2xl lg:text-3xl">{shelter.name}</h2>
         <p>{shelter.address}</p>
       </section>
 
-      <div className="mx-auto flex w-9/10 flex-col gap-4 pb-8 lg:h-4/5 lg:flex-row">
-        <div className="flex flex-col gap-4 lg:h-4/5 lg:w-3/5 lg:gap-8">
+      <div className="mx-auto flex w-9/10 flex-col gap-4 border border-red pb-8 lg:flex-1 lg:flex-row lg:pb-0">
+        <div className="flex flex-col gap-4 lg:h-4/5 lg:w-3/5 lg:gap-3">
           <section className="flex flex-col gap-4 rounded-2xl bg-white px-3 py-4 text-left align-center">
             <div className="flex items-center justify-between">
               <div className="flex items-baseline gap-2">

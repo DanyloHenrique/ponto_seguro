@@ -8,6 +8,7 @@ export const missingPersonService = {
     const result = await api.post('/missing-peoples', {
       name: data.name,
       dateBirth: new Date(data.dateBirth),
+      cpf: data.cpf,
       lastSeenLocation: data.lastSeenLocation,
       contactName: data.contactName,
       contactPhone: data.contactPhone,
@@ -16,7 +17,7 @@ export const missingPersonService = {
     })
     console.log('🚀 ~ result:', result.data)
     if (!(result.status === 201)) {
-      return alert('Erro ao registrar pessoa')
+      return alert(`Erro ao registrar pessoa - ${result.data.message}`)
     }
     return result.data
   },
@@ -25,7 +26,7 @@ export const missingPersonService = {
   async fetchByUserId() {
     const result = await api.get(`/missing-peoples/me`)
     if (!(result.status === 200)) {
-      return alert('Erro ao buscar pessoas perdidas')
+      return alert(`Erro ao buscar pessoas perdidas - ${result.data.message}`)
     }
     return result.data.payload
   },

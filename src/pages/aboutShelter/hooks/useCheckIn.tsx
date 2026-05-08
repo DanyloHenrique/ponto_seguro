@@ -7,12 +7,18 @@ import type { checkInInput } from '@/types/checkIn'
 const checkInSchema = z.object({
   name: z.string().min(3),
   dateBirth: z.coerce.date(),
+  cpf: z
+    .string()
+    .min(11, 'CPF Inválido')
+    .transform((val) => val.replace(/\D/g, ''))
+    .optional(),
 })
 
 export function useCheckInForm(shelterId: string) {
   const [checkInInput, setCheckInInput] = useState<checkInInput>({
     name: '',
     dateBirth: '',
+    cpf: '',
   })
 
   const [onSuccess, setOnSuccess] = useState(false)
@@ -30,6 +36,7 @@ export function useCheckInForm(shelterId: string) {
       setErrorsZod({
         name: tree.properties?.name?.errors?.[0] ?? '',
         dateBirth: tree.properties?.dateBirth?.errors?.[0] ?? '',
+        cpf: tree.properties?.cpf?.errors?.[0] ?? '',
       })
       setIsLoading(false)
       return
@@ -42,6 +49,7 @@ export function useCheckInForm(shelterId: string) {
       const result = await checkInService.register({
         name: dataValidated.name,
         dateBirth: dataValidated.dateBirth,
+        cpf: dataValidated.cpf,
         shelterId,
       })
       console.log('🚀 ~ handleRegister ~ result:', result)

@@ -1,3 +1,4 @@
+import { useMask } from '@react-input/mask'
 import { LuUserCheck } from 'react-icons/lu'
 import { Input } from '@/components/input/Input'
 import { Button } from '@/components/primaryButton/PrimaryButton'
@@ -18,6 +19,11 @@ export const CheckInForm = ({
   isLoading,
   errorsZod,
 }: CheckInFormProps) => {
+  const cpfInputRef = useMask({
+    mask: '___.___.___-__',
+    replacement: { _: /\d/ },
+  })
+
   return (
     <section className="flex flex-col gap-4 rounded-2xl bg-white px-3 py-4 text-left align-center">
       <h3 className="font-semibold text-sm tracking-widest">
@@ -69,6 +75,29 @@ export const CheckInForm = ({
           {errorsZod.dateBirth && (
             <span className="text-alert">{errorsZod.dateBirth}</span>
           )}
+        </div>
+
+        <div>
+          <Input.Root>
+            <Input.Label htmlFor="person-date-cpf">
+              CPF: <span className="text-gray-400 text-sm">(opcional)</span>
+            </Input.Label>
+            <Input.Control
+              id="person-date-cpf"
+              type="text"
+              placeholder="999.999.999-99"
+              maxLength={14}
+              ref={cpfInputRef}
+              value={checkInInput.cpf}
+              onChange={(e) =>
+                setCheckInInput({
+                  ...checkInInput,
+                  cpf: e.target.value,
+                })
+              }
+            />
+          </Input.Root>
+          {errorsZod.cpf && <span className="text-alert">{errorsZod.cpf}</span>}
         </div>
 
         <Button.Root type="submit" disabled={isLoading}>

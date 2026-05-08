@@ -1,6 +1,7 @@
 export type inputMissingPerson = {
   name: string
   dateBirth: string
+  cpf: string
   lastSeenLocation: string
   contactName: string
   contactPhone: string
@@ -11,6 +12,7 @@ export type inputMissingPerson = {
 export type postMissingPerson = {
   name: string
   dateBirth: Date
+  cpf?: string
   lastSeenLocation: string
   contactName: string
   contactPhone: string
@@ -24,6 +26,7 @@ export type missingPerson = {
   shelterId?: string
   name: string
   dateBirth: Date
+  cpf?: string
   lastSeenLocation: string
   contactName: string
   contactPhone: string

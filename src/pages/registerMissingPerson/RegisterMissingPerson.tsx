@@ -12,6 +12,11 @@ import type { inputMissingPerson } from '@/types/missingPerson'
 const registerMissingPersonSchema = z.object({
   name: z.string().min(3, 'O nome deve ter pelo menos 3 caracteres'),
   dateBirth: z.coerce.date(),
+  cpf: z
+    .string()
+    .min(11, 'CPF Inválido')
+    .transform((val) => val.replace(/\D/g, ''))
+    .optional(),
   lastSeenLocation: z.string(),
   contactName: z.string(),
   contactPhone: z
@@ -29,6 +34,7 @@ export const RegisterMissingPerson = () => {
   const [missingPerson, setMissingPerson] = useState<inputMissingPerson>({
     name: '',
     dateBirth: '',
+    cpf: '',
     lastSeenLocation: '',
     contactName: '',
     contactPhone: '',
@@ -49,6 +55,7 @@ export const RegisterMissingPerson = () => {
       setErrors({
         name: tree.properties?.name?.errors?.[0] ?? '',
         dateBirth: tree.properties?.dateBirth?.errors?.[0] ?? '',
+        cpf: tree.properties?.cpf?.errors?.[0] ?? '',
         contactName: tree.properties?.contactName?.errors?.[0] ?? '',
         contactPhone: tree.properties?.contactPhone?.errors?.[0] ?? '',
       })

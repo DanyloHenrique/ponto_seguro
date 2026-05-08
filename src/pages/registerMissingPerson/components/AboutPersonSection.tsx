@@ -1,3 +1,5 @@
+import { useMask } from '@react-input/mask'
+
 import { Input } from '@/components/input/Input'
 import type { inputMissingPerson } from '@/types/missingPerson'
 
@@ -12,6 +14,11 @@ export const AboutPersonSection = ({
   setMissingPerson,
   errors,
 }: AboutPersonSectionProps) => {
+  const cpfInputRef = useMask({
+    mask: '___.___.___-__',
+    replacement: { _: /\d/ },
+  })
+
   return (
     <>
       <h3 className="mb-2 font-semibold text-lg">Seção 1 - Sobre a pessoa</h3>
@@ -60,6 +67,29 @@ export const AboutPersonSection = ({
           {errors.dateBirth && (
             <span className="text-alert">{errors.dateBirth}</span>
           )}
+        </div>
+
+        <div>
+          <Input.Root>
+            <Input.Label htmlFor="missing-person-cpf">
+            CPF: <span className="text-gray-400 text-sm">(opcional)</span>
+            </Input.Label>
+            <Input.Control
+              id="missing-person-cpf"
+              type="text"
+              placeholder="999.999.999-99"
+              value={missingPerson.cpf}
+              ref={cpfInputRef}
+              maxLength={14}
+              onChange={(e) =>
+                setMissingPerson({
+                  ...missingPerson,
+                  cpf: e.target.value,
+                })
+              }
+            />
+          </Input.Root>
+          {errors.cpf && <span className="text-alert">{errors.cpf}</span>}
         </div>
 
         <div>
