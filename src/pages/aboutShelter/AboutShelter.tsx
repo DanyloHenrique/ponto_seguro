@@ -64,7 +64,7 @@ export const Shelter = () => {
         <p>{shelter.address}</p>
       </section>
 
-      <div className="mx-auto flex w-9/10 flex-col gap-4 pb-8 lg:mb-2 lg:flex-1 lg:flex-row lg:pb-0">
+      <div className="mx-auto mb-8 flex h-full w-9/10 flex-col gap-4 lg:mb-2 lg:h-8/10 lg:flex-row lg:items-stretch lg:pb-0">
         <div className="flex flex-col gap-4 lg:h-4/5 lg:w-3/5 lg:gap-3">
           <section className="flex flex-col gap-4 rounded-2xl bg-white px-3 py-4 text-left align-center">
             <div className="flex items-center justify-between">
