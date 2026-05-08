@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useToast } from '@/contexts/ToastContext'
 import { shelterService } from '@/services/shelterService'
 import type { nearbyShelter } from '@/types/shelter'
 
@@ -11,17 +12,17 @@ export const useFetchNearbyShelters = ({
   longitude,
   latitude,
 }: useFetchNearbySheltersProps) => {
+  const { showToast } = useToast()
   const [shelters, setShelters] = useState<nearbyShelter[]>([])
 
   useEffect(() => {
     if (!latitude || !longitude) return
-
     const fetchNearbyShelters = async () => {
       try {
         const shelters = await shelterService.fetchNearby(latitude, longitude)
         setShelters(shelters)
       } catch (error) {
-        console.error('Erro ao buscar abrigos próximos', error)
+        showToast('Erro ao buscar abrigos próximos', 'error')
       }
     }
     fetchNearbyShelters()

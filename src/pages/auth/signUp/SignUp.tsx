@@ -4,8 +4,10 @@ import { Link, useNavigate } from 'react-router'
 import { z } from 'zod'
 import { Input } from '@/components/input/Input'
 import { Button } from '@/components/primaryButton/PrimaryButton'
+import { useToast } from '@/contexts/ToastContext'
 import { authService } from '@/services/authService'
 import type { createUser } from '@/types/user'
+import { getErrorMessage } from '@/utils/getErrorMessage'
 
 const registerSchema = z.object({
   name: z.string().min(3, 'O nome deve ter pelo menos 3 caracteres'),
@@ -14,6 +16,7 @@ const registerSchema = z.object({
 })
 
 export const SignUp = () => {
+  const { showToast } = useToast()
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const [errorsZod, setErrorsZod] = useState<Record<string, string>>({})
@@ -49,11 +52,10 @@ export const SignUp = () => {
     setIsLoading(true)
     try {
       await authService.register(dataCreateUser)
-      alert('Cadastro realizado com sucesso!')
+      showToast('Cadastro realizado com sucesso!', 'success')
       navigate('/login')
     } catch (error) {
-      console.error(error)
-      alert('Erro ao cadastrar')
+      showToast(getErrorMessage(error), 'error')
     } finally {
       setIsLoading(false)
     }

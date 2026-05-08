@@ -1,8 +1,10 @@
 import type React from 'react'
 import { useState } from 'react'
 import { z } from 'zod'
+import { useToast } from '@/contexts/ToastContext'
 import { checkInService } from '@/services/checkIn.services'
 import type { checkInInput } from '@/types/checkIn'
+import { getErrorMessage } from '@/utils/getErrorMessage'
 
 const checkInSchema = z.object({
   name: z.string().min(3),
@@ -15,6 +17,7 @@ const checkInSchema = z.object({
 })
 
 export function useCheckInForm(shelterId: string) {
+  const { showToast } = useToast()
   const [checkInInput, setCheckInInput] = useState<checkInInput>({
     name: '',
     dateBirth: '',
@@ -46,18 +49,16 @@ export function useCheckInForm(shelterId: string) {
     setErrorsZod({})
     setIsLoading(true)
     try {
-      const result = await checkInService.register({
+      await checkInService.register({
         name: dataValidated.name,
         dateBirth: dataValidated.dateBirth,
         cpf: dataValidated.cpf,
         shelterId,
       })
-      console.log('🚀 ~ handleRegister ~ result:', result)
-      alert('Registrado com sucesso!')
+      showToast('Registrado com sucesso!', 'success')
       setOnSuccess(true)
     } catch (error) {
-      console.error(error)
-      alert('Erro ao registrar pessoa no abrigo')
+      showToast(getErrorMessage(error), 'error')
     } finally {
       setIsLoading(false)
     }

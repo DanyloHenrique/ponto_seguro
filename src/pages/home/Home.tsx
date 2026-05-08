@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { MdOutlineNightShelter } from 'react-icons/md'
 import { Link } from 'react-router'
+import { useToast } from '@/contexts/ToastContext'
+// import { type ToastType, useToast } from '@/contexts/ToastContext'
 import { UserShelter } from '@/pages/nearbyShelters/components/UserShelter'
 import { missingPersonService } from '@/services/missingPersonService'
 import { shelterService } from '@/services/shelterService'
@@ -9,32 +11,28 @@ import type { shelterUser } from '@/types/shelter'
 import { CriticalAlerts } from './components/CriticalAlerts'
 import { ListMissingPersons } from './components/ListMissingPersons'
 import { QuickAction } from './components/QuickActions'
+import { getErrorMessage } from '@/utils/getErrorMessage'
 
 export const Home = () => {
+  const { showToast } = useToast()
   const [missingPersons, setMissingPersons] = useState<missingPerson[]>([])
   const [shelters, setShelters] = useState<shelterUser[]>([])
 
-  const fetchUserMissingPersons = async () => {
-    try {
-      const responseMissingPersons = await missingPersonService.fetchByUserId()
-      setMissingPersons(responseMissingPersons)
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  const fetchUserShelter = async () => {
-    try {
-      const responseShelters = await shelterService.fetchByUserId()
-      setShelters(responseShelters)
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
   useEffect(() => {
-    fetchUserMissingPersons()
-    fetchUserShelter()
+    const fetchData = async () => {
+      try {
+        const [missingPersons, shelters] = await Promise.all([
+          missingPersonService.fetchByUserId(),
+          shelterService.fetchByUserId(),
+        ])
+        setMissingPersons(missingPersons)
+        setShelters(shelters)
+      } catch (error) {
+        showToast(getErrorMessage(error), 'error')
+      }
+    }
+  
+    fetchData()
   }, [])
 
   return (

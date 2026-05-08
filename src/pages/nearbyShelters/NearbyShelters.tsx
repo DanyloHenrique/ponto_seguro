@@ -1,7 +1,5 @@
-import { useContext } from 'react'
 import { LuCircleAlert } from 'react-icons/lu'
 import { MdOutlinePersonPinCircle } from 'react-icons/md'
-import { AuthContext } from '@/contexts/AuthContext'
 import { Card } from '@/pages/nearbyShelters/components/Card'
 import { DeniedLocation } from '@/pages/nearbyShelters/components/DeniedLocation'
 import { LoadingNearbyShelter } from '@/pages/nearbyShelters/components/LoadingNearbyShelters'
@@ -14,8 +12,6 @@ export const NearbyShelters = () => {
     longitude: location.longitude,
     latitude: location.latitude,
   })
-  const token = useContext(AuthContext)
-  console.log('🚀 ~ NearbyShelters ~ token:', token)
 
   if (isDeniedLocation) return <DeniedLocation />
   if (isLoading) return <LoadingNearbyShelter />

@@ -5,8 +5,10 @@ import z from 'zod'
 
 import bannerShelterRegister from '@/assets/shelter-register.png'
 import { Button } from '@/components/primaryButton/PrimaryButton'
+import { useToast } from '@/contexts/ToastContext'
 import { shelterService } from '@/services/shelterService'
 import type { inputShelter } from '@/types/shelter'
+import { getErrorMessage } from '@/utils/getErrorMessage'
 import { AboutShelterSection } from './components/AboutShelterSection'
 import { LocationShelter } from './components/LocationSection'
 
@@ -19,6 +21,7 @@ const registerShelterSchema = z.object({
 })
 
 export const RegisterShelter = () => {
+  const { showToast } = useToast()
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
@@ -39,12 +42,10 @@ export const RegisterShelter = () => {
 
     if (!result.success) {
       const tree = z.treeifyError(result.error)
-
       setErrors({
         name: tree.properties?.name?.errors?.[0] ?? '',
         address: tree.properties?.address?.errors?.[0] ?? '',
       })
-
       return
     }
 
@@ -52,12 +53,11 @@ export const RegisterShelter = () => {
     setErrors({})
     setIsLoading(true)
     try {
-     await shelterService.register(dataValidated)
-      alert('Abrigo criado com sucesso!')
+      await shelterService.register(dataValidated)
+      showToast('Abrigo criado com sucesso!', 'success')
       navigate('/home')
     } catch (error) {
-      console.error(error)
-      alert('Erro ao registrar abrigo')
+      showToast(getErrorMessage(error), 'error')
     } finally {
       setIsLoading(false)
     }
