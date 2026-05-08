@@ -2,14 +2,16 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 
 import { BarProgress } from '@/components/barProgress/BarProgress'
+import { useToast } from '@/contexts/ToastContext'
 import { shelterService } from '@/services/shelterService'
 import type { shelter } from '@/types/shelter'
-
+import { getErrorMessage } from '@/utils/getErrorMessage'
 import { CheckInForm } from './components/CheckInForm'
 import RegisteredPersons from './components/RegisteredPersons'
 import { useCheckInForm } from './hooks/useCheckIn'
 
 export const Shelter = () => {
+  const { showToast } = useToast()
   const { id } = useParams()
   const {
     isLoading,
@@ -25,12 +27,11 @@ export const Shelter = () => {
   useEffect(() => {
     if (!id) return
     const fetchShelter = async () => {
-      console.log('in useEffect')
       try {
         const response = await shelterService.fetchById(id)
         setShelter(response)
       } catch (error) {
-        console.error(error)
+        showToast(getErrorMessage(error), 'error')
       } finally {
         setIsInitialLoading(false)
       }
@@ -63,7 +64,7 @@ export const Shelter = () => {
         <p>{shelter.address}</p>
       </section>
 
-      <div className="mx-auto flex w-9/10 flex-col gap-4 border border-red pb-8 lg:flex-1 lg:flex-row lg:pb-0">
+      <div className="mx-auto flex w-9/10 flex-col gap-4 pb-8 lg:mb-2 lg:flex-1 lg:flex-row lg:pb-0">
         <div className="flex flex-col gap-4 lg:h-4/5 lg:w-3/5 lg:gap-3">
           <section className="flex flex-col gap-4 rounded-2xl bg-white px-3 py-4 text-left align-center">
             <div className="flex items-center justify-between">

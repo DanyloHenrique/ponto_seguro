@@ -4,10 +4,12 @@ import { useNavigate } from 'react-router'
 import z from 'zod'
 
 import { Button } from '@/components/primaryButton/PrimaryButton'
+import { useToast } from '@/contexts/ToastContext'
 import { AboutPersonSection } from '@/pages/registerMissingPerson/components/AboutPersonSection'
 import { ContactSection } from '@/pages/registerMissingPerson/components/ContactSection'
 import { missingPersonService } from '@/services/missingPersonService'
 import type { inputMissingPerson } from '@/types/missingPerson'
+import { getErrorMessage } from '@/utils/getErrorMessage'
 
 const registerMissingPersonSchema = z.object({
   name: z.string().min(3, 'O nome deve ter pelo menos 3 caracteres'),
@@ -28,6 +30,7 @@ const registerMissingPersonSchema = z.object({
 })
 
 export const RegisterMissingPerson = () => {
+  const { showToast } = useToast()
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
@@ -68,11 +71,10 @@ export const RegisterMissingPerson = () => {
     setIsLoading(true)
     try {
       await missingPersonService.register(dataValidated)
-      alert('Pessoa desaparecida cadastrada com sucesso!')
+      showToast('Pessoa desaparecida cadastrada com sucesso!', 'success')
       navigate('/home')
     } catch (error) {
-      console.error(error)
-      alert('Erro ao registrar pessoa')
+      showToast(getErrorMessage(error), 'error')
     } finally {
       setIsLoading(false)
     }

@@ -4,8 +4,10 @@ import { Link, useNavigate } from 'react-router'
 import { z } from 'zod'
 import { Input } from '@/components/input/Input'
 import { Button } from '@/components/primaryButton/PrimaryButton'
+import { useToast } from '@/contexts/ToastContext'
 import { authService } from '@/services/authService'
 import type { loginUser } from '@/types/user'
+import { getErrorMessage } from '@/utils/getErrorMessage'
 
 const registerSchema = z.object({
   email: z.string().email('E-mail inválido'),
@@ -13,6 +15,7 @@ const registerSchema = z.object({
 })
 
 export const Login = () => {
+  const { showToast } = useToast()
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const [errorsZod, setErrorsZod] = useState<Record<string, string>>({})
@@ -32,26 +35,19 @@ export const Login = () => {
 
     if (!result.success) {
       const fieldErrors = result.error.flatten().fieldErrors
-
       setErrorsZod({
         email: fieldErrors.email?.[0] ?? '',
         password: fieldErrors.password?.[0] ?? '',
       })
-
       return
     }
-
     setErrorsZod({})
     setIsLoading(true)
     try {
-      const token = await authService.login(
-        dataLoginUser.email,
-        dataLoginUser.password,
-      )
-      if (token) navigate('/home')
+      await authService.login(dataLoginUser.email, dataLoginUser.password)
+      navigate('/home')
     } catch (error) {
-      console.error(error)
-      alert('Erro ao entrar na conta')
+      showToast(getErrorMessage(error), 'error')
     } finally {
       setIsLoading(false)
     }

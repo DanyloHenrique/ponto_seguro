@@ -16,8 +16,6 @@ export const authService = {
   // POST /users
   register: async (userData: createUser) => {
     const response = await api.post('/users', userData)
-    console.log('🚀 ~ response:', response.data)
-    alert(response.data)
     return response.data
   },
 }
