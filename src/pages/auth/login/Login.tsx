@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { MdOutlineArrowCircleRight } from 'react-icons/md'
 import { Link, useNavigate } from 'react-router'
 import { z } from 'zod'
+import { DemoLoginButton } from '@/components/demoLoginButton/DemoLoginButton'
 import { Input } from '@/components/input/Input'
 import { Button } from '@/components/primaryButton/PrimaryButton'
 import { useToast } from '@/contexts/ToastContext'
@@ -130,6 +131,8 @@ export const Login = () => {
             Criar agora
           </Link>
         </p>
+
+          <DemoLoginButton />
       </section>
     </main>
   )
