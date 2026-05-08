@@ -8,6 +8,7 @@ import { useToast } from '@/contexts/ToastContext'
 import { authService } from '@/services/authService'
 import type { createUser } from '@/types/user'
 import { getErrorMessage } from '@/utils/getErrorMessage'
+import { DemoLoginButton } from '@/components/demoLoginButton/DemoLoginButton'
 
 const registerSchema = z.object({
   name: z.string().min(3, 'O nome deve ter pelo menos 3 caracteres'),
@@ -62,7 +63,7 @@ export const SignUp = () => {
   }
 
   return (
-    <main className="flex h-dvh w-full flex-col bg-background px-6 py-10 align-center">
+    <main className="flex h-dvh w-full flex-col bg-background px-6 pt-5 pb-5 align-center">
       <div className="mb-6 text-center">
         <h2 className="mb-2 font-bold text-4xl">Ponto Seguro</h2>
         <p className="text-lg text-surface">Crie sua conta</p>
@@ -157,6 +158,9 @@ export const SignUp = () => {
             Fazer login
           </Link>
         </p>
+
+        <DemoLoginButton />
+
       </section>
     </main>
   )
