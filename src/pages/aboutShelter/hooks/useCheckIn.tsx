@@ -11,9 +11,9 @@ const checkInSchema = z.object({
   dateBirth: z.coerce.date(),
   cpf: z
     .string()
-    .min(11, 'CPF Inválido')
-    .transform((val) => val.replace(/\D/g, ''))
-    .optional(),
+    .optional()
+    .transform((val) => (val ? val.replace(/\D/g, '') : undefined))
+    .refine((val) => !val || val.length === 11, { message: 'CPF Inválido' }),
 })
 
 export function useCheckInForm(shelterId: string) {
